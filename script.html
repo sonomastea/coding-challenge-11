@@ -1,22 +1,26 @@
 <!--U05721483-->
 <!DOCTYPE html>
 <html lang="en">
-    <head> 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,intial-scale=1.0">
-        <title> D3 Bar Chart</title>
-        <script src="https://d3.js.org/d3.v6.min.js"></script>
-        <style>
-            .bar:hover{
-                fill: blue;
-            }
-            .bar-label{
-                font-size: 10px;
-                fill: black;
-            }
-        </style>
-    </head>
-    <body>
-        <script src="script.js"></script>
-    </body>
-</html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3 Bar Chart</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        .bar:hover {
+            fill: blue;
+        }
+        .bar-label {
+            font-size: 10px;
+            fill: black;
+        }
+    </style>
+</head>
+<body>
+    <script>
+                const width = 500;
+        const barHeight = 20;
+        const barMargin = 1;
+        const data = [100, 420, 230, 850, 560, 925];
+        const height = data.length * (barHeight + barMargin);
+
