@@ -32,7 +32,24 @@
             .domain([0, d3.max(data)])
             .range([50, width]);
 
+            svg.selectAll("g")
+            .data(data)
+            .enter()
+            .apppend("g")
+            .attr("transform", (d, i)
+         =>'translate(0, ${i * barHeight + barMargin})'
+         .each(function(d, i) {
+            d3.select(this)
+            .append("rect")
+            .attr("class, bar")
+            .attr("width", xScale(d))
+            .attr("height", barHeight)
+            .style("fill", "lightblue");
             
+         }
+    )
+
+
         </script>
     </body>
 </html>
