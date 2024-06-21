@@ -1,62 +1,73 @@
 <!--U05721483-->
-<!Doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-        content="width=device-width, intial- scale=1.0">
-        <title>D3 Bar Chart</title>
-        <script src="https://d3js.org/d3.v6.min.js"></script>
-        <style>
-            .bar:hover{
-                fill: blue;
-            }
-            .bar-label {
-                font-size: 10px;
-                fill: black;
-            }
-        </style>
-    </head>
-    <body>
-        <script>
-            const width=500;
-            const barHeight=20;
-            const barMargin=1;
-            const data=[100, 420, 230, 850, 560, 925];
-            const height= data.lenth * (barHeight+barMargin);
-            const svg= d3.select("body")
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3 Bar Chart</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        .bar:hover {
+            fill: blue;
+        }
+        .bar-label {
+            font-size: 10px;
+            fill: black;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const width = 500;
+        const barHeight = 20;
+        const barMargin = 1;
+        const data = [100, 420, 230, 850, 560, 925];
+        const height = data.length * (barHeight + barMargin);
+
+        const svg = d3.select("body")
             .append("svg")
             .attr("width", width)
             .attr("height", height);
-            const xScale = d3.scaleLinear()
+
+        const xScale = d3.scaleLinear()
             .domain([0, d3.max(data)])
             .range([50, width]);
 
-            svg.selectAll("g")
+        svg.selectAll("g")
             .data(data)
             .enter()
-            .apppend("g")
-            .attr("transform", (d, i)
-         =>'translate(0, ${i * barHeight + barMargin})'
-         .each(function(d, i) {
-            d3.select(this)
-            .append("rect")
-            .attr("class, bar")
-            .attr("width", xScale(d))
-            .attr("height", barHeight)
-            .style("fill", "lightblue");
-            d3.select(this)
-            .append("text")
-            .attr("class", "bar-label")
-            .attr("x", xScale(d)-5)
-            .attr("y", barHeight/2)
-            .attr("dy", ".35em")
-            .attr("text-anchor", "end")
-            .text(d);
-         }
-    )
+            .append("g")
+            .attr("transform", (d, i) => `translate(0, ${i * (barHeight + barMargin)})`)
+            .each(function(d, i) {
+                d3.select(this)
+                    .append("rect")
+                    .attr("class", "bar")
+                    .attr("width", xScale(d))
+                    .attr("height", barHeight)
+                    .style("fill", "lightblue");
+                
+                d3.select(this)
+                    .append("text")
+                    .attr("class", "bar-label")
+                    .attr("x", xScale(d) - 5)
+                    .attr("y", barHeight / 2)
+                    .attr("dy", ".35em")
+                    .attr("text-anchor", "end")
+                    .text(d);
+            });
 
+        svg.selectAll("rect")
+            .transition()
+            .duration(1000)
+            .attr("width", d => xScale(d));
 
-        </script>
-    </body>
+        svg.selectAll(".bar")
+            .on("mouseover", function() {
+                d3.select(this).style("fill", "pink");
+            })
+            .on("mouseout", function() {
+                d3.select(this).style("fill", "lightblue");
+            });
+    </script>
+</body>
 </html>
