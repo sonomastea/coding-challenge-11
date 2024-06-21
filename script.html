@@ -28,6 +28,11 @@
             .append("svg")
             .attr("width", width)
             .attr("height", height);
+            const xScale = d3.scaleLinear()
+            .domain([0, d3.max(data)])
+            .range([50, width]);
+
+            
         </script>
     </body>
 </html>
